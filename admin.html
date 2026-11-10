@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#3857f5">
+  <title>Admin — YEARBOOK SEMPIA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/styles.css">
+  <script src="./assets/js/config.js"></script>
+  <script defer src="./assets/js/api.js"></script>
+  <script defer src="./assets/js/admin.js"></script>
+</head>
+<body class="admin-page">
+  <div class="page-noise" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="./index.html"><span class="brand-mark">S!</span><span>YEARBOOK <b>SEMPIA</b></span></a>
+    <a class="admin-link" href="./index.html">FORM <span>↗</span></a>
+  </header>
+  <main class="container admin-container">
+    <section class="login-card" id="loginPanel">
+      <span class="eyebrow">PRIVATE SPACE · ADMIN ONLY</span>
+      <div class="login-emoji">🪩</div>
+      <h1>Hey, admin!</h1>
+      <p>Masuk untuk cek progres pengisian data SEMPIA.</p>
+      <form id="loginForm">
+        <label>Password admin<input id="adminPassword" type="password" required autocomplete="current-password" placeholder="Masukkan password"></label>
+        <button class="submit-button" id="loginButton" type="submit"><span>OPEN DASHBOARD</span><b>↗</b></button>
+      </form>
+      <div id="loginMessage" class="message" role="status" aria-live="polite"></div>
+    </section>
+
+    <section class="dashboard hidden" id="dashboardPanel">
+      <div class="dashboard-head"><div><span class="eyebrow">SEMPIA CONTROL ROOM</span><h1>Dashboard <em>Admin.</em></h1><p>Pantau siapa yang sudah dan belum mengisi.</p></div><button id="logoutButton" class="back-button" type="button">LOG OUT ↗</button></div>
+      <div class="stats-grid" id="stats"></div>
+      <div class="dashboard-toolbar">
+        <input id="searchInput" type="search" placeholder="Cari nama / ID…" aria-label="Cari nama atau ID">
+        <select id="categoryFilter" aria-label="Filter kategori"><option value="all">Semua kategori</option><option value="student">Siswa</option><option value="teacher">Guru</option></select>
+        <select id="statusFilter" aria-label="Filter status"><option value="all">Semua status</option><option value="not_submitted">Belum mengisi</option><option value="pending">Menunggu</option><option value="verified">Terverifikasi</option><option value="revision">Perlu revisi</option></select>
+      </div>
+      <div class="table-card">
+        <div class="table-heading"><div><strong>Daftar peserta</strong><small id="resultCount">Memuat data…</small></div><button type="button" id="refreshButton" class="refresh-button">↻ Refresh</button></div>
+        <div class="table-wrap"><table><thead><tr><th>Nama / ID</th><th>Kategori</th><th>Status</th><th>Foto</th><th>Update</th><th></th></tr></thead><tbody id="profileRows"><tr><td colspan="6">Memuat data…</td></tr></tbody></table></div>
+      </div>
+      <div id="dashboardMessage" class="message" role="status" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <dialog id="detailDialog" class="detail-dialog" aria-labelledby="detailTitle">
+    <div class="dialog-header"><div><span class="eyebrow">PROFILE CHECK</span><h2 id="detailTitle">Detail peserta</h2></div><button type="button" id="closeDialogButton" class="icon-button" aria-label="Tutup">✕</button></div>
+    <div id="detailLoading" class="muted">Memuat detail…</div>
+    <div id="detailBody" class="hidden">
+      <div class="detail-layout"><div class="detail-photo-wrap"><img id="detailPhoto" class="detail-photo" alt="Foto peserta"></div><div id="detailFields" class="detail-fields"></div></div>
+      <div class="admin-note-box"><label for="adminNote">Catatan revisi <small>Wajib jika meminta perbaikan, maksimal 500 karakter.</small></label><textarea id="adminNote" rows="3" maxlength="500" placeholder="Tulis bagian yang perlu diperbaiki…"></textarea></div>
+      <div class="dialog-actions"><button type="button" id="revisionButton" class="secondary-button">Minta revisi</button><button type="button" id="verifyButton" class="primary-button">Verifikasi</button></div>
+      <div id="detailMessage" class="message" role="status" aria-live="polite"></div>
+    </div>
+  </dialog>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#3857f5">
+  <meta name="description" content="Formulir pengumpulan data YEARBOOK SEMPIA.">
+  <title>YEARBOOK SEMPIA — Your Story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/styles.css">
+  <script src="./assets/js/config.js"></script>
+  <script defer src="./assets/js/api.js"></script>
+  <script defer src="./assets/js/compression.js"></script>
+  <script defer src="./assets/js/app.js"></script>
+</head>
+<body>
+  <div class="page-noise" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="./index.html" aria-label="YEARBOOK SEMPIA Home"><span class="brand-mark">S!</span><span>YEARBOOK <b>SEMPIA</b></span></a>
+    <a class="admin-link" href="./admin.html">ADMIN <span>↗</span></a>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="eyebrow-dot"></span> THE SEMPIA CLASS OF MEMORIES</span>
+        <h1>Your story.<br><em>Your moment.</em></h1>
+        <p>Satu form kecil untuk menyimpan cerita besar. Isi data diri dan kirim foto terbaikmu!</p>
+        <div class="hero-stickers"><span class="sticker sticker-yellow">MAKE IT<br>ICONIC ✦</span><span class="sticker sticker-pink">SEMPIA<br>VIBES!</span></div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-circle"></div><div class="art-card"><div class="art-photo">📸</div><div class="art-caption">THIS IS<br>YOUR ERA</div></div>
+        <span class="art-star star-one">✳</span><span class="art-star star-two">✦</span><span class="art-spark">✧</span>
+      </div>
+    </section>
+
+    <section class="privacy-strip"><span>🔒</span><p>Data hanya untuk keperluan pendataan YEARBOOK SEMPIA dan dikelola admin sekolah.</p></section>
+
+    <section class="section-intro"><div><span class="eyebrow">LET'S GET STARTED</span><h2>Who are you?</h2></div><span class="step-chip">01 / 02</span></section>
+    <section class="choice-grid" id="choices">
+      <button class="choice-card student" type="button" data-category="student">
+        <span class="choice-top"><span class="choice-icon">🎒</span><span class="choice-tag">STUDENT</span></span>
+        <span class="choice-title">I'm a student</span><span class="choice-desc">Biodata + foto terbaikmu.</span><span class="choice-arrow">LET'S GO <b>↗</b></span>
+      </button>
+      <button class="choice-card teacher" type="button" data-category="teacher">
+        <span class="choice-top"><span class="choice-icon">🍎</span><span class="choice-tag">TEACHER</span></span>
+        <span class="choice-title">I'm a teacher</span><span class="choice-desc">Biodata + kata mutiaramu.</span><span class="choice-arrow">LET'S GO <b>↗</b></span>
+      </button>
+    </section>
+
+    <section class="form-panel hidden" id="formPanel">
+      <div class="form-heading">
+        <div><span class="eyebrow" id="formEyebrow">STUDENT FORM</span><h2 id="formTitle">Tell us about you.</h2><p>Isi yang perlu, cek lagi, lalu kirim.</p></div>
+        <button class="back-button" id="backButton" type="button">← BACK</button>
+      </div>
+      <div class="progress-track"><span id="formProgress"></span></div>
+      <form id="profileForm" novalidate>
+        <div class="form-section-label"><span>01</span> BASIC INFO</div>
+        <label>Nama lengkap <i>*</i>
+          <select id="personSelect" required><option value="">Memuat daftar nama...</option></select>
+          <small>Pilih nama sesuai daftar resmi sekolah.</small>
+        </label>
+        <label id="accessCodeField" class="hidden">Kode pengisian <i>*</i>
+          <input id="accessCode" type="password" maxlength="40" autocomplete="off" placeholder="Masukkan kode dari admin">
+          <small>Hanya diminta jika admin mengaktifkan kode peserta.</small>
+        </label>
+        <div class="two-col">
+          <label>Tempat lahir <i>*</i><input id="birthplace" maxlength="100" required autocomplete="off" placeholder="Contoh: Surabaya"></label>
+          <label>Tanggal lahir <i>*</i><input id="birthdate" type="date" required></label>
+        </div>
+        <label>Alamat <i>*</i><textarea id="address" rows="2" maxlength="500" required placeholder="Alamat tempat tinggal"></textarea></label>
+        <label>Nomor WhatsApp <i>*</i><input id="whatsapp" type="tel" inputmode="tel" maxlength="20" required placeholder="08xxxxxxxxxx"></label>
+
+        <div id="socialSection" class="social-section">
+          <div class="form-section-label"><span>02</span> SOCIAL MEDIA <small>OPTIONAL</small></div>
+          <div id="socialRows" class="social-rows"></div>
+          <button type="button" id="addSocialButton" class="add-social">＋ Add social account</button>
+        </div>
+
+        <label><span id="mottoLabel">Quote / kata-kata hari ini</span> <i>*</i><textarea id="motto" rows="3" maxlength="240" required placeholder="Satu kalimat yang menggambarkan dirimu..."></textarea><small>Maksimal 240 karakter.</small></label>
+
+        <div class="upload-box" id="photoSection">
+          <div class="upload-title"><div><div class="form-section-label"><span>03</span> YOUR BEST SHOT</div><strong>Drop your main character photo.</strong><small>Foto wajib untuk siswa · JPG, PNG, WebP</small></div><span class="upload-emoji">📷</span></div>
+          <input id="photo" type="file" accept="image/jpeg,image/png,image/webp" required>
+          <small>Maksimal 15 MB sebelum kompresi dan 2 MB setelah kompresi.</small>
+          <div id="photoPreview" class="photo-preview hidden"></div>
+          <div id="photoStatus" class="photo-status" aria-live="polite"></div>
+        </div>
+
+        <label class="consent"><input id="consent" type="checkbox" required><span>Saya menyatakan data yang dikirim benar dan menyetujui penggunaannya untuk administrasi YEARBOOK SEMPIA. Jika diperlukan, saya telah memperoleh izin orang tua/wali.</span></label>
+        <button class="submit-button" id="submitButton" type="submit"><span>SUBMIT MY STORY</span><b>↗</b></button>
+        <p class="form-note">Data yang sudah dikirim akan diperiksa admin sekolah.</p>
+      </form>
+      <div id="formMessage" class="message" role="status" aria-live="polite"></div>
+    </section>
+
+    <footer><span>SEMPIA FOREVER ✳</span><span>© YEARBOOK SEMPIA</span></footer>
+  </main>
+
+</body>
+</html>
